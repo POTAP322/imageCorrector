@@ -1,0 +1,52 @@
+:root {
+  --light: whitesmoke;
+  --dark: #81899b;
+}
+
+body{
+	margin: 0;
+  	height:170vh;
+  	text-align:center;
+
+}
+header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: Grey;
+    }
+
+#Logo {
+    color: black;
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.theme_switchers {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.switch {
+  border: 2px solid black;
+  border-radius: 50px;
+  height: 30px;
+  width: 30px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.switch:hover {
+  transform: scale(1.1);
+  transition: 0.3s ease-in-out;
+}
+
+#switch-1 {
+  background: var(--light);
+}
+#switch-2 {
+  background: var(--dark);
+}
+

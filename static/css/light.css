@@ -1,0 +1,9 @@
+:root {
+  --back-color: whitesmoke;
+}
+body {
+  background: linear-gradient(to bottom, darkcyan 5%, var(--back-color) 6%);
+}
+.block-1{
+  background: darkcyan;
+}

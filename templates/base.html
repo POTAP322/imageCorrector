@@ -1,0 +1,23 @@
+<!-- Тут можно написать изначальный шаблон для всех страниц, чтобы в каждом заново не надо было, а то что отличается через блоки менять  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href="{{ url_for('static', filename = 'css/main.css') }}">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <header>
+        <div id="Logo">
+            <h1>PhotoШоп</h1>
+        </div>
+        <div class="theme_switchers">
+            <div data-theme="light" class="switch" id="switch-1"></div>
+            <div data-theme="dark" class="switch" id="switch-2"></div>
+        </div>
+    </header>
+
+
+    {% block body %} {% endblock %}
+</body>
+</html>

@@ -1,0 +1,10 @@
+:root {
+  --header-back: #1a1d24;
+}
+
+body {
+  background: linear-gradient(to bottom, var(--header-back) 5%, darkgray 6%);
+}
+.block-1{
+  background: var(--header-back);
+}
