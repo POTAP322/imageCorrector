@@ -14,15 +14,14 @@
         <div id="Logo">
             <h1>PhotoШоп</h1>
         </div>
-        <div class="theme_switchers">
-            <div data-theme="light" class="switch" id="switch-1"></div>
-            <div data-theme="dark" class="switch" id="switch-2"></div>
+        <div id="infoPageBtn">
+            Info
         </div>
+
     </header>
     <div id="instrumentsBar">
-        <h1>ffffff</h1>
+        {% block instrumentBar %} {% endblock %}
     </div>
-
 
     {% block body %} {% endblock %}
 
