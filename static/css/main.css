@@ -14,7 +14,18 @@ header{
         justify-content: space-between;
         align-items: center;
         background: Grey;
+        border-bottom: 6px solid black;
     }
+#instrumentsBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: Grey;
+    width: 20%;
+    height: 100%;
+    border-right: 6px solid black;
+
+}
 
 #Logo {
     color: black;

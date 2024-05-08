@@ -5,6 +5,9 @@
 body {
   background: linear-gradient(to bottom, var(--header-back) 5%, darkgray 6%);
 }
-.block-1{
+header{
+  background: var(--header-back);
+}
+#instrumentsBar{
   background: var(--header-back);
 }
