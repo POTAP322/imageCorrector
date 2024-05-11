@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel = "stylesheet" href="{{ url_for('static', filename = 'css/main.css') }}">
+    <link rel = "stylesheet" href="{{ url_for('static', filename = 'js/script.js') }}">
+    <link rel="stylesheet" id="switcher-id">
+
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
@@ -11,13 +14,17 @@
         <div id="Logo">
             <h1>PhotoШоп</h1>
         </div>
-        <div class="theme_switchers">
-            <div data-theme="light" class="switch" id="switch-1"></div>
-            <div data-theme="dark" class="switch" id="switch-2"></div>
+        <div id="infoPageBtn">
+            Info
         </div>
-    </header>
 
+    </header>
+    <div id="instrumentsBar">
+        {% block instrumentBar %} {% endblock %}
+    </div>
 
     {% block body %} {% endblock %}
+
+    <script src="../static/js/script.js"></script>
 </body>
 </html>
