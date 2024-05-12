@@ -1,22 +1,71 @@
 {% extends 'base.html' %}
 
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}
+
 {% block title %}
 Index title
 {% endblock %}
 
+{% block header %}
+<div id="Logo">
+    <h1>PhotoШоп</h1>
+</div>
+
+
+
+
+<button class="fileBtn" id="file-btn">
+    Файл
+<!--    <input type="file" id="file-input2" style="display: none;">-->
+</button>
+
+{% endblock %}
+
+
+{% block workSpaceBar %}
+<img id="selected-image">
+
+{% endblock %}
+
+
 {% block instrumentBar %}
+
+<form action="/" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="file-input" style="display: none;">
+
+    <button type="submit" id="upload-button" style="display: none;"></button>
+</form>
+
+
+
+
 <div class="toolPanel">
-<h1>FFFFF</h1>
+    <h1>Яркость</h1>
+    <input type="range" min="0" max="100" value="0" class="slider" id="myRange1">
 </div>
 <div class="toolPanel">
-<h1>FFFFF</h1>
+    <h1>Контрастность </h1>
+    <input type="range" min="0" max="100" value="0" class="slider" id="myRange2">
 </div>
 <div class="toolPanel">
-<h1>FFFFF</h1>
+    <h1>Размытие </h1>
+    <input type="range" min="0" max="100" value="0" class="slider" id="myRange3">
 </div>
 <div class="toolPanel">
-<h1>FFFFF</h1>
+    <h1>Негатив </h1>
+    <input type="checkbox" >
 </div>
+<div class="toolPanel">
+    <h1>Негатив </h1>
+    <input type="checkbox" >
+</div>
+
+
+
+
+
 
 
 {% endblock %}

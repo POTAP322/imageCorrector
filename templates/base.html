@@ -7,24 +7,24 @@
     <link rel = "stylesheet" href="{{ url_for('static', filename = 'js/script.js') }}">
     <link rel="stylesheet" id="switcher-id">
 
+    {% block scripts %} {% endblock %}
+
     <title>{% block title %} {% endblock %}</title>
+
 </head>
 <body>
     <header>
-        <div id="Logo">
-            <h1>PhotoШоп</h1>
-        </div>
-        <div id="infoPageBtn">
-            Info
-        </div>
+        {% block header %} {% endblock %}
 
     </header>
-    <div id="instrumentsBar">
-        {% block instrumentBar %} {% endblock %}
+    <div id="container1">
+        <div id="instrumentsBar">{% block instrumentBar %} {% endblock %}</div>
+        <div id="workSpaceBar">{% block workSpaceBar %} {% endblock %}</div>
     </div>
-
     {% block body %} {% endblock %}
 
-    <script src="../static/js/script.js"></script>
+
+
+
 </body>
 </html>
