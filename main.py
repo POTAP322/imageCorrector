@@ -14,15 +14,22 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-img_dir = os.path.join(current_dir, "static", "image")
+img_folder = 'static/image/'
 @app.route('/', methods=['GET', 'POST'])
 def upload_image():
     if request.method == 'POST':
         # Получаем файл из запроса
         uploaded_file = request.files['file']
         if uploaded_file.filename != '':
-            # Сохраняем файл на сервере (вы можете выбрать свой путь)
-            uploaded_file.save('static/image/' + uploaded_file.filename)
+            if len(os.listdir(img_folder)) == 0:
+                uploaded_file.save('static/image/' + uploaded_file.filename)
+            else:
+                for filename in os.listdir(img_folder):
+                    file_path = os.path.join(img_folder, filename)
+                    os.remove(file_path)
+                uploaded_file.save('static/image/' + uploaded_file.filename)
+
+
     return render_template('index.html')
 @app.route("/info")
 def info():

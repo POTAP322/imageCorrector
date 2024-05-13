@@ -14,14 +14,17 @@ Index title
 </div>
 
 
+<form action="/" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="file-input" style="display: none;">
 
+</form>
 
 <button class="fileBtn" id="file-btn">
     Файл
-<!--    <input type="file" id="file-input2" style="display: none;">-->
 </button>
 
 {% endblock %}
+
 
 
 {% block workSpaceBar %}
@@ -32,11 +35,7 @@ Index title
 
 {% block instrumentBar %}
 
-<form action="/" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" id="file-input" style="display: none;">
 
-    <button type="submit" id="upload-button" style="display: none;"></button>
-</form>
 
 
 
