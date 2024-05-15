@@ -14,11 +14,10 @@ Index title
 </div>
 
 
-<form action="/" method="post" enctype="multipart/form-data">
+<form action="/process_img_sender" method="post" enctype="multipart/form-data">
     <input type="file" name="file" id="file-input" style="display: none;">
 
 </form>
-
 <button class="fileBtn" id="file-btn">
     Файл
 </button>
@@ -56,9 +55,11 @@ Index title
     <h1>Негатив </h1>
     <input type="checkbox" >
 </div>
+
 <div class="toolPanel">
-    <h1>Негатив </h1>
-    <input type="checkbox" >
+    <form id="myForm" action="/process_checkbox" method="post" value="1">
+        <input type="checkbox" name="my_checkbox" id="checkbox1">
+    </form>
 </div>
 
 

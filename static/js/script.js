@@ -17,15 +17,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData();
         formData.append('file', file);
 
-        fetch('/', {
+        fetch('/process_img_sender', {
             method: 'POST',
             body: formData
         }).then(response => {
-            // Обработка успешной отправки файла
             console.log('Файл успешно отправлен на сервер');
         }).catch(error => {
-            // Обработка ошибок
             console.error('Ошибка при отправке файла на сервер:', error);
         });
     }
+
+
+    const checkbox1 = document.getElementById('checkbox1');
+    const myForm = document.getElementById('myForm');
+
+
+
+
+    checkbox1.addEventListener('click', () => {
+    if (checkbox1.checked) {
+        console.log('Чекбокс нажат');
+        // Отправка данных на сервер
+    } else {
+        console.log('Чекбокс не нажат');
+
+    }
+    fetch('/process_checkbox', {
+        method: 'POST',
+        body: JSON.stringify({ my_checkbox: checkbox1.checked }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+});
+
+
+
+
+
+
 });
