@@ -48,19 +48,21 @@ Index title
     <input type="range" min="0" max="100" value="0" class="slider" id="myRange2">
 </div>
 <div class="toolPanel">
-    <h1>Размытие </h1>
+    <h1>Резкость </h1>
     <input type="range" min="0" max="100" value="0" class="slider" id="myRange3">
+</div>
+<div class="toolPanel">
+    <h1>Размытие </h1>
+    <form id="myForm" action="/process_blur_checkbox" method="post" value="1">
+        <input type="checkbox" name="my_checkbox" id="checkbox1">
+    </form>
 </div>
 <div class="toolPanel">
     <h1>Негатив </h1>
     <input type="checkbox" >
 </div>
 
-<div class="toolPanel">
-    <form id="myForm" action="/process_checkbox" method="post" value="1">
-        <input type="checkbox" name="my_checkbox" id="checkbox1">
-    </form>
-</div>
+
 
 
 

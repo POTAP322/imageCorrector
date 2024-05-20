@@ -28,23 +28,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    const checkbox1 = document.getElementById('checkbox1');
+
+    const blur_checkbox = document.getElementById('checkbox1');
     const myForm = document.getElementById('myForm');
 
-
-
-
-    checkbox1.addEventListener('click', () => {
+    blur_checkbox.addEventListener('click', () => {
     if (checkbox1.checked) {
         console.log('Чекбокс нажат');
         // Отправка данных на сервер
+        img.src = 'static/image/modPicture/blurred_image.jpg'
     } else {
         console.log('Чекбокс не нажат');
 
+        const folderPath = 'static/image/origPicture/';
+        const fs = require('fs');
+        const files = fs.readdirSync(folderPath);
+
+        img.src = 'static/image/origPicture/' + files[0];
+
     }
-    fetch('/process_checkbox', {
+    fetch('/process_blur_checkbox', {
         method: 'POST',
-        body: JSON.stringify({ my_checkbox: checkbox1.checked }),
+        body: JSON.stringify({ my_checkbox: blur_checkbox.checked }),
         headers: {
             'Content-Type': 'application/json'
         }

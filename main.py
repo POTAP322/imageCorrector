@@ -12,6 +12,16 @@ app = Flask(__name__)
 @app.route("/index")
 @app.route("/")
 def index():
+    #очищаем папки с картинками
+    for filename in os.listdir(orig_img_folder):
+        file_path = os.path.join(orig_img_folder, filename)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+    for filename in os.listdir(mod_img_folder):
+        file_path = os.path.join(mod_img_folder, filename)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+
     return render_template("index.html")
 
 
@@ -36,13 +46,21 @@ def upload_image():
     return render_template('index.html')
 
 
-@app.route('/process_checkbox', methods=['POST'])
-def process_checkbox():
+@app.route('/process_blur_checkbox', methods=['POST'])
+def process_blur_checkbox():
     data = request.get_json()
     print(data)
 
     if 'my_checkbox' in data and data['my_checkbox'] is True:
-        print("Галочка нажата")
+        if len(os.listdir(mod_img_folder)) == 0:
+            files_in_folder = os.listdir(orig_img_folder)
+            file_name = files_in_folder[0]
+            orig_image_path = os.path.join(orig_img_folder, file_name)
+            orig_image = Image.open(orig_image_path)
+
+            blurred_image = orig_image.filter(ImageFilter.BLUR)
+            blurred_image_path = os.path.join(mod_img_folder, 'blurred_image.jpg')
+            blurred_image.convert('RGB').save(blurred_image_path)
     else:
         print("Галочка не нажата")
     return 'OK'
