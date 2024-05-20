@@ -1,7 +1,8 @@
 import os
+import shutil
 
 from PIL import Image, ImageFilter
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 
 current_dir = os.getcwd()
 
@@ -12,7 +13,7 @@ app = Flask(__name__)
 @app.route("/index")
 @app.route("/")
 def index():
-    #очищаем папки с картинками
+    # очищаем папки с картинками
     for filename in os.listdir(orig_img_folder):
         file_path = os.path.join(orig_img_folder, filename)
         if os.path.isfile(file_path):
@@ -34,14 +35,9 @@ def upload_image():
     if request.method == 'POST':
         # Получаем файл из запроса
         uploaded_file = request.files['file']
-        if uploaded_file.filename != '':
-            if len(os.listdir(orig_img_folder)) == 0:
-                uploaded_file.save(orig_img_folder + uploaded_file.filename)
-            else:
-                for filename in os.listdir(orig_img_folder):
-                    file_path = os.path.join(orig_img_folder, filename)
-                    os.remove(file_path)
-                uploaded_file.save(orig_img_folder + uploaded_file.filename)
+        if len(os.listdir(orig_img_folder)) <= 1:
+            uploaded_file.save(orig_img_folder + 'orig_image.jpg')
+            shutil.copy(orig_img_folder + 'orig_image.jpg', os.path.join(mod_img_folder, 'mod_image.jpg'))
 
     return render_template('index.html')
 
@@ -52,18 +48,16 @@ def process_blur_checkbox():
     print(data)
 
     if 'my_checkbox' in data and data['my_checkbox'] is True:
-        if len(os.listdir(mod_img_folder)) == 0:
-            files_in_folder = os.listdir(orig_img_folder)
-            file_name = files_in_folder[0]
-            orig_image_path = os.path.join(orig_img_folder, file_name)
-            orig_image = Image.open(orig_image_path)
+        mod_image_path = os.path.join(mod_img_folder, 'mod_image.jpg')
+        mod_image = Image.open(mod_image_path)
+        blurred_image = mod_image.filter(ImageFilter.BLUR)
 
-            blurred_image = orig_image.filter(ImageFilter.BLUR)
-            blurred_image_path = os.path.join(mod_img_folder, 'blurred_image.jpg')
-            blurred_image.convert('RGB').save(blurred_image_path)
+        blurred_image.convert('RGB').save(mod_image_path)
     else:
         print("Галочка не нажата")
-    return 'OK'
+
+    # отправляем ответ
+    return send_file(mod_image_path, mimetype='image/jpeg')
 
 
 @app.route("/info")

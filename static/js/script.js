@@ -36,29 +36,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (checkbox1.checked) {
         console.log('Чекбокс нажат');
         // Отправка данных на сервер
-        img.src = 'static/image/modPicture/blurred_image.jpg'
+        fetch('/process_blur_checkbox', {
+            method: 'POST',
+            body: JSON.stringify({ my_checkbox: blur_checkbox.checked }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            //обновление изображения на веб-странице
+
+            //math что бы не кешировал браузер старую версию картинки
+            img.src = 'static/image/modPicture/mod_image.jpg?' + Math.random();
+        }).catch(error => {
+            console.error('Ошибка при отправке данных на сервер:', error);
+        });
     } else {
         console.log('Чекбокс не нажат');
-
-        const folderPath = 'static/image/origPicture/';
-        const fs = require('fs');
-        const files = fs.readdirSync(folderPath);
-
-        img.src = 'static/image/origPicture/' + files[0];
-
+        img.src = 'static/image/origPicture/orig_image.jpg?' + Math.random();
     }
-    fetch('/process_blur_checkbox', {
-        method: 'POST',
-        body: JSON.stringify({ my_checkbox: blur_checkbox.checked }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
 });
-
-
-
-
-
 
 });
