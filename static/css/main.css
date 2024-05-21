@@ -59,16 +59,39 @@ header{
     border-radius: 50px;
     height: 4%;
     width: 4%;
+    margin-right: -39%;
+
+    cursor: pointer;
+    background: #3B3A39;
+
+    font-size:20px;
+}
+
+.fileBtn:hover {
+  transform: scale(1.1);
+  transition: 0.3s ease-in-out;
+}
+
+.switch:hover {
+  transform: scale(1.1);
+  transition: 0.3s ease-in-out;
+}
+
+.resetBtn {
+    font-family: 'Impact, fantasy', monospace;
+    color: LightGrey;
+    border: 2px solid #2B2A29;
+    border-radius: 50px;
+    height: 4%;
+    width: 4%;
     margin-right: 2%;
 
     cursor: pointer;
     background: #3B3A39;
 
     font-size:20px;
-
-
 }
-.fileBtn:hover {
+.resetBtn:hover {
   transform: scale(1.1);
   transition: 0.3s ease-in-out;
 }
