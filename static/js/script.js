@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox1.disabled = false;
         checkbox2.checked = false;
         checkbox2.disabled = false;
+        sharpnessCurValue = 0;
+        brightnessCurValue = 0;
+        contrastCurValue = 0;
 
     }
 
@@ -114,8 +117,16 @@ resetBtn.addEventListener('click', async (event) => {
 
     const sharpnessSlider = document.getElementById('sharpnessSlider');
     const sharpnessValue = document.getElementById('sharpnessValue');
+
+    let sharpnessCurValue = parseInt(sharpnessSlider.value);
+
     sharpnessSlider.addEventListener('input', () => {
-    sharpnessValue.value = sharpnessSlider.value;
+
+        const newValue = parseInt(sharpnessSlider.value);
+        if (newValue-sharpnessCurValue <=4 && newValue > sharpnessCurValue){
+            sharpnessCurValue = newValue;
+
+            sharpnessValue.value = sharpnessSlider.value;
     //console.log(sharpnessValue.value);
             fetch('/process_sharpness_slider', {
             method: 'POST',
@@ -129,13 +140,30 @@ resetBtn.addEventListener('click', async (event) => {
         }).catch(error => {
             console.error('Ошибка при отправке данных на сервер:', error);
         });
+        }
+        else {
+        // то ползунок на старое значение
+        sharpnessSlider.value = sharpnessCurValue;
+    }
+
+
 
 });
 
+
+
     const contrastSlider = document.getElementById('contrastSlider');
     const contrastValue = document.getElementById('contrastValue');
+
+    let contrastCurValue = parseInt(contrastSlider.value);
+
     contrastSlider.addEventListener('input', () => {
-    contrastValue.value = contrastSlider.value;
+
+        const newValue = parseInt(contrastSlider.value);
+        if (newValue-contrastCurValue <=4 && newValue>contrastCurValue){
+            contrastCurValue = newValue;
+
+            contrastValue.value = contrastCurValue;
             fetch('/process_contrast_slider', {
             method: 'POST',
             body: JSON.stringify({ contrastValue: contrastValue.value }),
@@ -148,12 +176,26 @@ resetBtn.addEventListener('click', async (event) => {
         }).catch(error => {
             console.error('Ошибка при отправке данных на сервер:', error);
         });
+        }
+        else {
+        // то ползунок на старое значение
+        contrastSlider.value = contrastCurValue;
+    }
 
 });
+
     const brightnessSlider = document.getElementById('brightnessSlider');
     const brightnessValue = document.getElementById('brightnessValue');
+
+    let brightnessCurValue = parseInt(brightnessSlider.value);
+
     brightnessSlider.addEventListener('input', () => {
-        brightnessValue.value = brightnessSlider.value;
+
+        const newValue = parseInt(brightnessSlider.value);
+        if (newValue-brightnessCurValue <=4 && newValue > brightnessCurValue){
+            brightnessCurValue = newValue;
+
+            brightnessValue.value = brightnessCurValue;
             fetch('/process_brightness_slider', {
             method: 'POST',
             body: JSON.stringify({ brightnessValue: brightnessValue.value }),
@@ -166,6 +208,11 @@ resetBtn.addEventListener('click', async (event) => {
         }).catch(error => {
             console.error('Ошибка при отправке данных на сервер:', error);
         });
+        }
+        else {
+        // то ползунок на старое значение
+        brightnessSlider.value = brightnessCurValue;
+    }
 
 });
 

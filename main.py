@@ -128,9 +128,10 @@ def process_brightness_slider():
     mod_image = Image.open(mod_image_path)
     brightness = int(data['brightnessValue']) / 100.0
 
-    max_brightness_change = 0.5
+    max_brightness_change = 0.1 #насколько максимальн оувеличиться яркость
 
     contrast_image = ImageEnhance.Brightness(mod_image).enhance(1 + brightness * max_brightness_change)
+    print(1 + brightness * max_brightness_change)
 
     mod_image.close()
     contrast_image.convert('RGB').save(mod_image_path)

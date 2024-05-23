@@ -117,7 +117,7 @@ header{
 
 }
 .slider {
-    width: 80%;
+    width: 65%;
     height: 10%;
     border-radius: 5px;
 }
@@ -131,6 +131,9 @@ header{
 }
 input[type="checkbox"] {
   transform: scale(2);
+}
+input[type="range"] {
+  transform: scale(1.3);
 }
 
 
